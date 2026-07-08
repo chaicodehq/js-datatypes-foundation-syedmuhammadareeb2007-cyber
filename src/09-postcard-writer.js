@@ -53,20 +53,63 @@
  */
 export function writePostcard(sender, receiver, message) {
   // Your code here
+//    1. writePostcard(sender, receiver, message)
+//  *      - Template literal se formatted postcard banao:
+//  *        "Priy {receiver},\n\n{message}\n\nAapka/Aapki,\n{sender}"
+//  *      - Agar koi bhi param string nahi hai ya trim ke baad empty hai, return ""
+//  *      - Example: writePostcard("Guddu", "Dadi ji", "Hum theek hain")
+//  *                 => "Priy Dadi ji,\n\nHum theek hain\n\nAapka/Aapki,\nGuddu"
+  if((typeof sender !== "string" || sender.trim().length === 0) || (typeof receiver !== "string" || receiver.trim().length === 0) || (typeof message !== "string" || message.trim().length === 0)) return "";
+
+  return `Priy ${receiver},\n\n${message}\n\nAapka/Aapki,\n${sender}`;
 }
 
 export function isValidPincode(code) {
   // Your code here
+if (typeof code !== "string") return false;
+  if (code.length !== 6) return false;
+
+  if (code.startsWith("0")) return false;
+
+  const allDigits = /^\d+$/.test(code);
+  if (!allDigits) return false;
+
+  return true;
 }
 
 export function formatPostcardField(label, value, width) {
   // Your code here
+//   3. formatPostcardField(label, value, width)
+
+if (typeof label !== "string" || typeof value !== "string") {
+    return "";
+  }
+
+  // 2. Set default fallback width if not provided or if it's not a number
+  const targetWidth = typeof width === "number" ? width : 12;
+
+  // 3. Format and return the aligned string
+  return label.padEnd(targetWidth) + ": " + value;
+
 }
 
 export function isFromState(address, stateCode) {
   // Your code here
+  if (typeof address !== "string" || typeof stateCode !== "string") {
+    return false;
+  }
+  return address.endsWith(stateCode);
 }
 
 export function countVowels(message) {
   // Your code here
+  if (typeof message !== "string") {
+    return 0;
+  }
+
+  // 2. Scan the string for vowels
+  const matches = message.match(/[aeiouAEIOU]/g);
+
+  // 3. Return length if matches are found, otherwise return 0 if null
+  return matches ? matches.length : 0;
 }

@@ -9,7 +9,7 @@
  *   Math.ceil(), Math.max(), Math.min(), Math.abs()
  *
  * Functions:
- *
+ *  
  *   1. parseFare(fareString)
  *      - Customer bolte hain "152.50" as string — parseFloat() se number banao
  *      - Agar result NaN hai ya fareString string nahi hai, return -1
@@ -52,20 +52,50 @@
  */
 export function parseFare(fareString) {
   // Your code here
+  if(typeof fareString !== "string") return -1;
+  const result = parseFloat(fareString);
+  if(Number.isNaN(result)) return -1;
+  return result;
 }
 
 export function roundFare(amount, decimalPlaces) {
   // Your code here
+  if(typeof amount !== "number" || decimalPlaces < 0 || !Number.isInteger(decimalPlaces)) return "";
+  const result = amount.toFixed(decimalPlaces);
+  return result;
 }
 
 export function calculateSurge(baseFare, surgeMultiplier) {
   // Your code here
+  if(baseFare<0 ||surgeMultiplier<0 || typeof baseFare !== "number" || typeof surgeMultiplier !== "number") return 0;
+  const result = Math.ceil(baseFare * surgeMultiplier);
+  return result;
 }
 
 export function findCheapestAndCostliest(...fares) {
-  // Your code here
+//   // Your code here
+const validFares = fares.filter(fare => Number.isFinite(fare));
+  if (validFares.length === 0) {
+    return null;
+  }
+
+  return {
+    cheapest: Math.min(...validFares),
+    costliest: Math.max(...validFares)
+  };
 }
 
 export function getDistanceDifference(from, to) {
   // Your code here
+//   5. getDistanceDifference(from, to)
+//  *      - parseInt() se string km markers ko numbers mein convert karo
+//  *      - Math.abs() se absolute difference nikalo (direction matter nahi karta)
+//  *      - Agar parse ke baad koi NaN hai, return -1
+//  *      - Example: getDistanceDifference(5, 12) => 7
+//  *      - Example: getDistanceDifference("15", "8") => 7
+  const a = parseInt(from);
+  const b = parseInt(to);
+  if(Number.isNaN(a) || Number.isNaN(b)) return -1;
+  const result = Math.abs(to - from);
+  return result;
 }

@@ -59,20 +59,36 @@
  */
 export function getDataType(value) {
   // Your code here
+  if(value === null) return "null";
+  if(Array.isArray(value)) return "array";
+  return typeof value;
 }
 
 export function isValidParcelWeight(weight) {
   // Your code here
+  if (! Number.isFinite(weight)) return false;
+    if(weight <= 0) return false;
+    return true;
 }
 
 export function isWholeNumber(value) {
   // Your code here
+  return Number.isInteger(value);
 }
 
 export function isNotANumber(value) {
   // Your code here
+  return Number.isNaN(value);
 }
 
 export function isTruthy(value) {
   // Your code here
+  //  *   5. isTruthy(value)
+//  *      - Boolean(value) se check karo ki value truthy hai ya nahi
+//  *      - JS mein Falsy values: false, 0, "", null, undefined, NaN
+//  *      - Sab kuch aur truthy hai (including [], {}, "0", "false")!
+//  *      - Example: isTruthy("hello") => true
+//  *      - Example: isTruthy(0) => false
+//  *      - Example: isTruthy([]) => true (haan, empty array truthy hai!)
+  return Boolean(value);   
 }

@@ -1,4 +1,4 @@
-/**
+ /**
  * ☕ Chai Tapri Order System - String Basics
  *
  * Guddu ki chai tapri hai college ke bahar. Customers order dete hain,
@@ -47,20 +47,56 @@
  */
 export function getChaiOrderLength(order) {
   // Your code here
+  const s = typeof order === "string";
+  if(s) {
+    let output = order.trim();
+    return output.length;
+  }
+  else return -1;
 }
 
 export function shoutChaiOrder(order) {
   // Your code here
+  const s = (typeof order !== "string") || (order === "");
+  if(s) return "";
+  else{
+    let output = order.trim();
+    return output.toUpperCase();
+  } 
 }
 
 export function whisperChaiOrder(order) {
   // Your code here
+  const s = (typeof order !== "string") || (order === "");
+  if(s) return "";
+  else{
+    let output = order.trim()
+    return output.toLowerCase();
+  } 
 }
 
 export function hasSpecialIngredient(order, ingredient) {
   // Your code here
+  if(typeof ingredient !== "string" || typeof order !== "string")
+    return false;
+  else{
+    const o = order.trim().toLowerCase();
+    const i = ingredient.trim().toLowerCase();
+    if(o.includes(i))
+    return true;
+  else
+    return false;
+  }  
 }
 
 export function getFirstAndLastChar(order) {
   // Your code here
+  if(typeof order !== "string") return null;
+  else{
+    const s = order.trim();
+    if(s === "") return null;
+    let first = s.charAt(0);
+    let last = s.at(-1);
+    return {first, last};
+  }
 }
